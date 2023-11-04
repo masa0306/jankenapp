@@ -68,7 +68,7 @@ body{
 /* game画像 */
 .play h1{
     color: white;
-    font-size: 42px;
+    font-size: 32px;
 }
 .play{
     background-image: url("../img/play_background.png");
@@ -76,7 +76,7 @@ body{
     background-position: center;
     width: auto;
     height: 800px;
-    padding: 200px 120px 200px 120px;
+    padding: 60px 60px 60px 60px;
 }
 .start{
     padding: 120px 0px 0px 0px;
@@ -113,6 +113,7 @@ body{
 .opponent p{
     color: white;
     font-size: 30px;
+    font-weight: normal;
     position: absolute;
     top: 15%;
     left: 50%;
@@ -137,13 +138,13 @@ body{
 
 .hukidashi{
     position: absolute;
-    top: 73%;
+    top: 80%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
 .mission p{
     position: absolute;
-    top: 70%;
+    top: 76%;
     left: 50%;
     transform: translate(-50%,-50%);
     color: black;
@@ -192,23 +193,30 @@ body{
     }
 }
 
-
 /* あたり */
 .wrap{
     position: relative;
+    height: 100%;
+    width: auto;
 }
 
 .result{
     background: rgba(0, 0, 0, 0.9);
     position: absolute;
     top: 50%;
-    width: auto;
+    left:50%;
+    width: 1000px;
     padding: 40px;
     height: 400px;
-    transform: translate(0%,-50%);
+    transform: translate(-50%,-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 10px;
+    font-size: 20px;
     color: white;
+}
+
+.result img{
+    width: 300px;
+    height: auto;
 }

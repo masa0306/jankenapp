@@ -1,13 +1,8 @@
-
-
-// 進撃の巨人のtopページ
-// 一旦開始で
-
-
 // playボタン
 $('#play_button').on("click",function() {
     console.log('click');
     $('#wrap').fadeIn(500);
+    $('#top').fadeOut(500);
     setTimeout(function(){ 
     // playのスクロールダウンのアニメーション
     // https://web-camp.io/magazine/archives/85351
@@ -21,9 +16,6 @@ $('#play_button').on("click",function() {
     });
     }, 500);
 });
-
-// 相手の手が現れる// 勝つべきか負けるべきかをしていされる
-// じゃんけんを実施する
 
 // ラウンド回数
 var roundCounter = 0;
@@ -41,8 +33,9 @@ function correct() {
     $('#opponent').fadeOut(1000);
     $('#mission').fadeOut(1000);
     $('#player').fadeOut(1000);
-    $('#start').fadeIn(1000);
-    roundCounter++;
+    $('#start').fadeIn(1000).text("NEXT").attr('id', 'next');
+    $('#next').fadeIn(1000);
+    nextgame();
 };
 
 // // ハズレのとき
@@ -59,15 +52,22 @@ function fault() {
     $('#opponent').fadeOut(2000);
     $('#mission').fadeOut(2000);
     $('#player').fadeOut(1000);
-    $('#start').fadeIn(1000);
-    
+    $('#start').fadeIn(1000).text("NEXT").attr('id', 'next');
+    $('#next').fadeIn(1000);
+    nextgame();
 };
 
 // // ゲーム再開
-$('#start').on("click", function() {
+function nextgame(){
+$('#next').on("click", function() {
     console.log('start_again');
+    $('#result').fadeOut(1000);
+    $('#next').fadeOut(1000);
+    $('#opponent').fadeIn(2000);
+    $('#mission').fadeIn(2000);
+    $('#player').fadeIn(2000);
     roundCounter++;
-});
+})};
 
 // 相手の手がランダム現れる関数
 var random_opponent;
@@ -124,6 +124,8 @@ function mission(){
         },1000);
 };
 
+// 次のゲームの開始
+
 // 時間制限の表示
 var limitTime = 10;//制限時間
 var startTime = Date.now(); //現在時刻
@@ -153,122 +155,95 @@ function countdownDisplay(){
 // じゃんけん
 function janken(){
     console.log('janken');
-    $('#rock').on("click",function() {
-        console.log('グーを選択');
+    $('#toubatsu').on("click",function() {
+        console.log('討伐を選択');
         if(random_opponent===1){
             if(missionNum=== 1){
-                console.log("グー、勝ち、間違い")
-                fault();
-            }else if(missionNum === 2){
-                console.log("グー、まけ、間違い")
-                fault()
-            }else if(missionNum === 3){
-                console.log("グー、引き分け、正解")
                 correct();
+            }else if(missionNum === 2){
+                correct();
+            }else if(missionNum === 3){
+                fault();
             }
         }
         else if(random_opponent===2){
             if(missionNum=== 1){
-                console.log("パー、勝ち、間違い")
                 fault();
             }else if(missionNum === 2){
-                console.log("パー、まけ、正解")
                 correct();
             }else if(missionNum === 3){
-                console.log("パー、引き分け、間違い")
                 fault();
             }
         }
         if(random_opponent===3){
             if(missionNum=== 1){
-                console.log("チョキ、勝ち、正解")
                 correct();
             }else if(missionNum === 2){
-                console.log("チョキ、まけ、正解")
-                fault();
+                correct();
             }else if(missionNum === 3){
-                console.log("チョキ、引き分け、間違い")
                 fault();
             }
         }
     });
 
-    $('#paper').on("click",function() {
-        console.log('パーを選択');
+    $('#ikedori').on("click",function() {
+        console.log('生け捕りを選択');
         if(random_opponent===1){
             if(missionNum=== 1){
-                console.log("グー、勝ち、正解")
-                correct();
+                fault();
             }else if(missionNum === 2){
-                console.log("グー、まけ、間違い")
                 fault();
             }else if(missionNum === 3){
-                console.log("グー、引き分け、間違い")
-                fault();
+                correct();
             }
         }
         else if(random_opponent===2){
             if(missionNum=== 1){
-                console.log("パー、勝ち、間違い")
-                fault();
+                correct();
             }else if(missionNum === 2){
-                console.log("パー、まけ、間違い")
                 fault();
             }else if(missionNum === 3){
-                console.log("パー、引き分け、正解")
-                correct();
+                fault();
             }
         }
         else if(random_opponent===3){
             if(missionNum=== 1){
-                console.log("チョキ、勝ち、間違い")
                 fault();
             }else if(missionNum === 2){
-                console.log("チョキ、まけ、正解")
-                correct();
-            }else if(missionNum === 3){
-                console.log("チョキ、引き分け、間違い")
                 fault();
+            }else if(missionNum === 3){
+                correct();
             }
         }
     });
 
-    $('#scissors').on("click",function() {
-        console.log('チョキを選択');
+    $('#nigeru').on("click",function() {
+        console.log('逃げるを選択');
         if(random_opponent===1){
             if(missionNum=== 1){
-                console.log("グー、勝ち、間違い")
                 fault();
             }else if(missionNum === 2){
-                console.log("グー、まけ、正解")
-                correct();
+                fault();
             }else if(missionNum === 3){
-                console.log("グー、引き分け、間違い")
                 fault();
             }
         }
         else if(random_opponent===2){
             if(missionNum=== 1){
-                console.log("パー、勝ち、正解")
-                correct();
+                fault();
             }else if(missionNum === 2){
-                console.log("パー、まけ、間違い")
                 fault();
             }else if(missionNum === 3){
-                console.log("パー、引き分け、間違い")
-                fault();
+                correct();
             }
         }
         else if(random_opponent===3){
             if(missionNum=== 1){
-                console.log("チョキ、勝ち、間違い")
                 fault();
             }else if(missionNum === 2){
-                console.log("チョキ、まけ、間違い")
-                fault();
-            }else if(missionNum === 3){
-                console.log("チョキ、引き分け、正解")
                 correct();
+            }else if(missionNum === 3){
+                fault();
             }
         }
     });
@@ -284,19 +259,17 @@ $(document).ready(function() {
     // 初期表示非表示
     $('#wrap').hide();
     $('#result').hide();
-
-    janken()    
+    janken();
     $('#start').on("click", function() {
         console.log('start');
+        $('#start').fadeOut(1000);
         opponent();
         mission();
-        console.log("回数"+roundCounter);
-        if (roundCounter >= 2) {
-            endGame();  
-        };
-        $('#start').fadeOut(1000);
     });
-
+    console.log("回数"+roundCounter);
+    if (roundCounter > 5) {
+        endGame();
+        };
 });
 
 // イベントハンドラの問題が発生したのでコメントアウトhttps://chat.openai.com/c/a74ac0a2-d48b-4eb3-8ae4-b1f8e74591a4
