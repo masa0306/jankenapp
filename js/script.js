@@ -66,6 +66,7 @@ $('#next').on("click", function() {
     $('#opponent').fadeIn(2000);
     $('#mission').fadeIn(2000);
     $('#player').fadeIn(2000);
+    countdown();
     roundCounter++;
 })};
 
@@ -127,10 +128,10 @@ function mission(){
 // 次のゲームの開始
 
 // 時間制限の表示
-var limitTime = 10;//制限時間
-var startTime = Date.now(); //現在時刻
-var timeDiff; //差分用  
-function countdown() {
+function countdown(){
+    var limitTime = 10;//制限時間
+    var startTime = Date.now(); //現在時刻
+    var timeDiff; //差分用  
     console.log("タイマー開始")
     timeDiff = Date.now() - startTime;
     timeDiff = limitTime - (timeDiff / 1000);
@@ -140,14 +141,13 @@ function countdown() {
     //console.log(timeDiff/100);
     //document.getElementById("timer").innerText = timeDiff/100+" sec";
     $('#sec').html(timeDiff);
-};
-function countdownDisplay(){
     console.log("表示開始");
     var id = setInterval(function () {
         countdown();
         if (timeDiff <= 0) {
             clearInterval(id);
             $('#sec').text("終了");
+            fault();
         }
     }, 1);
 };
@@ -265,6 +265,7 @@ $(document).ready(function() {
         $('#start').fadeOut(1000);
         opponent();
         mission();
+        countdown();
     });
     console.log("回数"+roundCounter);
     if (roundCounter > 5) {
